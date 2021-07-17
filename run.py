@@ -59,12 +59,12 @@ def validate_data(values):
         return False
     
     return True
-
+    """
 def update_sales_worksheet(data):
     """
-
+    """
     Update sales worksheet, add new row with the list data provided.
-
+    """
     """
     print("Updating sales worksheet...\n")
     sales_worksheet = SHEET.worksheet("sales")
@@ -74,14 +74,27 @@ def update_sales_worksheet(data):
 
 def update_surplus_worksheet(data):
     """
+    """
 
     Update sales worksheet, add new row with the list data provided.
-
+    """
     """
     print("Updating surplus worksheet...\n")
     surplus_worksheet = SHEET.worksheet("surplus")
     surplus_worksheet.append_row(data)
     print('Surplus worksheet updated succesfully.\n')
+    """
+
+def update_worksheet(data, worksheet):
+    """
+    receive slist of integers ot beisneretd int wkrsheet.
+    updates relvenat worksheet wit the dat aprovided
+    """
+    print(f"Updating {worksheet} worksheet...\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(f"{worksheet} worksheet updated succesfully\n")
+
 
 
 def calculate_surplus_data(sales_row):
@@ -105,6 +118,21 @@ def calculate_surplus_data(sales_row):
 
     
 
+def get_last_5_entries_sales():
+    """
+    collects colmns of data frm sales worksheet collectin
+    g the last fice netriees for aear columns and returns t eaverage
+    """
+    sales = SHEET.worksheet("sales")
+    #column = sales.col_values(3)
+    #print(column)
+
+    columns = []
+    for ind in range(1, 7):
+        column = sales.col_values(ind)
+        columns.appends(column)
+    pprint(columns)
+
 
 
 def main():
@@ -115,12 +143,14 @@ def main():
 
     data = get_sales_data()
     sales_data = [int(num) for num in data]
-    update_sales_worksheet(sales_data)
+    update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
-    update_surplus_worksheet(new_surplus_data)
+    update_worksheet(new_surplus_data, "surplus")
 
 
 
 
 print('welcome ot love sandwiche sdata autoamtion')
-main()
+# main()
+
+get_last_5_entries_sales()
