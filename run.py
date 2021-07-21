@@ -153,6 +153,7 @@ def calculate_stock_data(data):
 def main():
     """
     Run all program fucntons
+    variables define and thenthe functions run with the selected variables
     """
 
 
